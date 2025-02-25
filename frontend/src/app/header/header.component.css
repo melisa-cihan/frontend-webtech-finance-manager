@@ -1,0 +1,9 @@
+header {
+    background-image: url('../../assets/Logo.png');
+            background-size: contain; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            height: 200px; 
+            position: relative;
+           
+}
