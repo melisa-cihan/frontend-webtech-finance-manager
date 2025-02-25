@@ -1,9 +1,38 @@
 import { Injectable } from '@angular/core';
+import { Asset } from './asset';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
+  backendURL = 'http://localhost:3000'
+  
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  getAllAssets(): Observable<Asset[]>{
+    return this.http.get<Asset[]>(this.backendURL);
+  }
+
+  deleteOneAsset(id: string): Observable<any> {
+    let endpoint = '/assets';
+    return this.http.delete<any>(this.backendURL + endpoint + "/" + id);
+  }
+
+  getOneAsset(id: string): Observable<Asset>{
+    let endpoint = '/assets';
+    return this.http.get<Asset>(this.backendURL + endpoint + '/' + id);
+  }
+
+  createNewAsset(asset: Asset): Observable<Asset> {
+    let endpoint = '/assets';
+    return this.http.post<Asset>(this.backendURL + endpoint, asset);
+  }
+
+  updateOneAsset(asset: Asset, id: string): Observable<Asset> {
+    let endpoint = '/assets';
+    return this.http.put<Asset>(this.backendURL + endpoint + "/" + id, asset);
+  }
 }
