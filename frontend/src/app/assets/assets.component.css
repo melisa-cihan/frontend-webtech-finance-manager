@@ -1,0 +1,21 @@
+@import url('../../../node_modules/bootstrap-icons/font/bootstrap-icons.css');
+header{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+  
+  h3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+  }
+  
+  .bi-trash2-fill {
+    cursor: pointer;
+  }
