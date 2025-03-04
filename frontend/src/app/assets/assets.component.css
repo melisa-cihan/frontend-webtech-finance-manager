@@ -14,12 +14,21 @@ html, body {
 
 /* Make the table responsive */
 .table-responsive {
-  max-height: 70vh; /* Adjust table height */
+  max-height: calc(100vh - 150px); /* Adjust table height for responsiveness */
   overflow-y: auto; /* Enable vertical scrolling if table is too long */
+  margin-bottom: 50px; /* Ensure space for footer */
+  display: block; /* Ensure the table scrolls separately */
+  
 }
 
 /* Ensure table takes full width but does not shrink */
 .table {
   width: 100%;
   min-width: 1000px; /* Prevents table columns from shrinking */
+}
+.table thead {
+  position: sticky;
+  top: 0;
+  background-color: #343a40; /* Change background color to match table style */
+  z-index: 1; /* Ensures that the header stays on top */
 }
