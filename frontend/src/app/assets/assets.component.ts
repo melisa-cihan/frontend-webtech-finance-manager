@@ -17,6 +17,7 @@ export class AssetsComponent implements OnInit {
   filteredAssets!: Asset[]; 
   search = new FormControl();
   
+  
   constructor(private bs: BackendService, private router: Router) { }
 
   ngOnInit(): void {
@@ -36,6 +37,27 @@ export class AssetsComponent implements OnInit {
         error: (err) => console.log(err),
         complete: () => console.log('getAll() completed')
       })
+  }
+
+   // Method to delete an asset
+   delete(id: string): void {
+    this.bs.deleteOneAsset(id).subscribe({
+      next: () => {
+        // Filter out the deleted asset from the arrays
+        this.asset = this.asset.filter(a => a.id !== id);
+        this.filteredAssets = this.filteredAssets.filter(a => a.id !== id);
+        console.log(`Asset with id ${id} deleted successfully`);
+      },
+      error: (err) => {
+        console.error('Error deleting asset:', err);
+      },
+      complete: () => console.log('Delete operation completed')
+    });
+  }
+
+  // Method to reload the data from the backend (to restore deleted entries)
+  reloadData(): void {
+    this.readAll();  // Simply call readAll to re-fetch the data
   }
 
    // Filter the assets based on the search term

@@ -26,9 +26,14 @@ html, body {
   width: 100%;
   min-width: 1000px; /* Prevents table columns from shrinking */
 }
+
 .table thead {
   position: sticky;
   top: 0;
   background-color: #343a40; /* Change background color to match table style */
   z-index: 1; /* Ensures that the header stays on top */
+}
+
+i {
+  color: red;
 }

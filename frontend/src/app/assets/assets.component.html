@@ -7,11 +7,16 @@
     <h3>All Assets</h3>
     <input placeholder="filter" type="text" [formControl]="search" />
     <p></p>
+
+    <button (click)="reloadData()" class="btn btn-primary mb-3">
+      Reload Data
+    </button>
   
     <div class="table-responsive">
       <table class="table table-striped table-hover" style="min-width: 1000px;">
         <thead class="table-dark">
           <tr>
+            <th scope="col" class="col">Row</th>
             <th scope="col" class="col">ID</th>
             <th scope="col" class="col">Asset</th>
             <th scope="col" class="col">Category</th>
@@ -25,6 +30,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let a of filteredAssets; let i=index;">
+              <td>{{ i+1 }}</td>
               <td>{{ a.id }}</td>
               <td>{{ a.asset }}</td>
               <td>{{ a.category }}</td>
@@ -33,6 +39,8 @@
               <td>{{ a.roi }}</td>
               <td>{{ a.location }}</td>
               <td>{{ a.purchase_date }}</td>
+              <td><a [routerLink]="['/member', a.id ]"><span class="bi bi-pencil-square"></span></a> </td>
+                        <td><i (click)="delete(a.id)" class="bi bi-trash"></i></td>
             </tr>
           </tbody>
         </table>
