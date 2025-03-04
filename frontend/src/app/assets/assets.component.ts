@@ -14,12 +14,14 @@ import { RouterLink, Router } from '@angular/router';
 })
 export class AssetsComponent implements OnInit {
   asset!: Asset[];
+  filteredAssets!: Asset[]; 
   search = new FormControl();
   
   constructor(private bs: BackendService, private router: Router) { }
 
   ngOnInit(): void {
     this.readAll()
+    this.search.valueChanges.subscribe(value => this.filterAssets(value));
   }
 
   readAll(): void {
@@ -28,11 +30,27 @@ export class AssetsComponent implements OnInit {
         next: (response) => {
               this.asset = response;
               console.log(this.asset);
-              return this.asset;
+              this.filteredAssets = [...this.asset];
+              //return this.asset;
             },
         error: (err) => console.log(err),
         complete: () => console.log('getAll() completed')
       })
+  }
+
+   // Filter the assets based on the search term
+   filterAssets(searchTerm: string): void {
+    if (!searchTerm) {
+      this.filteredAssets = [...this.asset]; // If the search term is empty, show all assets
+    } else {
+      searchTerm = searchTerm.toLowerCase(); // Make search term case-insensitive
+      this.filteredAssets = this.asset.filter(a => 
+        a.asset.toLowerCase().includes(searchTerm) || // Search by asset name
+        a.category.toLowerCase().includes(searchTerm) || // Search by category
+        a.location.toLowerCase().includes(searchTerm) || // Search by location
+        a.purchase_date.toString().toLowerCase().includes(searchTerm) // Search by purchase date
+      );
+    }
   }
   
 }
