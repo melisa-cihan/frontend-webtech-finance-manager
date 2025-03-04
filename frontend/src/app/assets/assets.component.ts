@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Asset } from '../shared/asset';
@@ -8,13 +8,14 @@ import { RouterLink, Router } from '@angular/router';
 @Component({
   selector: 'app-assets',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './assets.component.html',
   styleUrl: './assets.component.css'
 })
 export class AssetsComponent implements OnInit {
   asset!: Asset[];
   search = new FormControl();
+  
   constructor(private bs: BackendService, private router: Router) { }
 
   ngOnInit(): void {

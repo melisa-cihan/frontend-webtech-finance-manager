@@ -12,9 +12,13 @@ export class BackendService {
   
   constructor(private http: HttpClient) { }
 
-  getAllAssets(): Observable<Asset[]>{
-    return this.http.get<Asset[]>(this.backendURL);
+  getAllAssets(): Observable<Asset[]> {
+    return this.http.get<Asset[]>(`${this.backendURL}/assets`); 
   }
+  
+  /**getAllAssets(): Observable<Asset[]>{
+    return this.http.get<Asset[]>(this.backendURL);
+  }**/
 
   deleteOneAsset(id: string): Observable<any> {
     let endpoint = '/assets';

@@ -24,16 +24,15 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let asset of asset; let i=index;">
-              <td>{{ i+1 }}</td>
-              <td>{{ asset.id }}</td>
-              <td>{{ asset.asset }}</td>
-              <td>{{ asset.category }}</td>
-              <td>{{ asset.current_value }}</td>
-              <td>{{ asset.purchase_price }}</td>
-              <td>{{ asset.roi }}</td>
-              <td>{{ asset.location }}</td>
-              <td>{{ asset.purchase_date }}</td>
+            <tr *ngFor="let a of asset; let i=index;">
+              <td>{{ a.id }}</td>
+              <td>{{ a.asset }}</td>
+              <td>{{ a.category }}</td>
+              <td>{{ a.current_value }}</td>
+              <td>{{ a.purchase_price }}</td>
+              <td>{{ a.roi }}</td>
+              <td>{{ a.location }}</td>
+              <td>{{ a.purchase_date }}</td>
             </tr>
           </tbody>
         </table>
