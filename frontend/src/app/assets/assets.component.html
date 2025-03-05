@@ -39,7 +39,7 @@
               <td>{{ a.roi }}</td>
               <td>{{ a.location }}</td>
               <td>{{ a.purchase_date }}</td>
-              <td><a [routerLink]="['/member', a.id ]"><span class="bi bi-pencil-square"></span></a> </td>
+              <td><a [routerLink]="['/assets', a.id ]"><span class="bi bi-pencil-square"></span></a> </td>
                         <td><i (click)="delete(a.id)" class="bi bi-trash"></i></td>
             </tr>
           </tbody>
