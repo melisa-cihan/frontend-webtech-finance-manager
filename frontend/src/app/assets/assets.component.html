@@ -39,8 +39,12 @@
               <td>{{ a.roi }}</td>
               <td>{{ a.location }}</td>
               <td>{{ a.purchase_date | date:'yyyy-MM-dd'}}</td>
-              <td><a [routerLink]="['/assets', a.id ]"><span class="bi bi-pencil-square"></span></a> </td>
-                        <td><i (click)="delete(a.id)" class="bi bi-trash"></i></td>
+              <td class="text-nowrap">
+                <a [routerLink]="['/assets', a.id]" class="me-2">
+                  <i class="bi bi-pencil-square text-primary"></i>
+                </a>
+                <i (click)="delete(a.id)" class="bi bi-trash text-danger" style="cursor: pointer;"></i>
+              </td>  
             </tr>
           </tbody>
         </table>
