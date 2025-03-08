@@ -38,7 +38,7 @@
               <td>{{ a.purchase_price }}</td>
               <td>{{ a.roi }}</td>
               <td>{{ a.location }}</td>
-              <td>{{ a.purchase_date | date:'yyyy-MM-dd'}}</td>
+              <td>{{ a.purchase_date | date:'dd-MM-yyyy'}}</td>
               <td class="text-nowrap">
                 <a [routerLink]="['/assets', a.id]" class="me-2">
                   <i class="bi bi-pencil-square text-primary"></i>
