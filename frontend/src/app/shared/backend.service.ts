@@ -35,7 +35,7 @@ export class BackendService {
     return this.http.post<Asset>(this.backendURL + endpoint, asset);
   }
 
-  updateOneAsset(asset: Asset, id: string): Observable<Asset> {
+  updateOneAsset(id: string, asset: Asset,): Observable<Asset> {
     let endpoint = '/assets';
     return this.http.put<Asset>(this.backendURL + endpoint + "/" + id, asset);
   }
