@@ -1,62 +1,112 @@
 <main class="d-flex min-vh-100">
-    <fieldset class="container  mt-5">
+  <fieldset class="container mt-5">
 
       @if(asset) {
-        <legend class="mb-4">Update Asset {{ asset.asset }} 
-        </legend>
+          <legend class="mb-4">Update Asset {{ asset.asset }}</legend>
       } @else {
-        <legend class="mb-4">Update Asset Entry</legend>
+          <legend class="mb-4">Update Asset Entry</legend>
       }
+
       <form [formGroup]="form" (ngSubmit)="update()">
-        <div class="mb-3 row">
-          <label class="col-2 col-form-label" for="asset">Asset</label>
-          <div class="col-10">
-            <input type="text" class="form-control" id="asset" placeholder="Asset"
-            formControlName="assetControl" />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label class="col-2 col-form-label" for="category">Category</label>
-          <div class="col-10">
-            <input type="text" class="col-10 form-control" id="category" placeholder="Category"
-            formControlName="categoryControl" />
-          </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-2 col-form-label" for="currentValue">Current Value</label>
-            <div class="col-10">
-              <input type="number" class="form-control" id="currentValue" placeholder="Current Value" formControlName="currentValueControl" />
-            </div>
-          </div>
+          <!-- Asset -->
           <div class="mb-3 row">
-            <label class="col-2 col-form-label" for="purchasePrice">Purchase Price</label>
-            <div class="col-10">
-              <input type="number" class="form-control" id="purchasePrice" placeholder="Purchase Price" formControlName="purchasePriceControl" />
-            </div>
+              <label class="col-2 col-form-label" for="asset">Asset</label>
+              <div class="col-10">
+                  <input type="text" class="form-control" id="asset" placeholder="Asset"
+                         formControlName="assetControl"
+                         [class.is-invalid]="form.controls.assetControl.touched && form.controls.assetControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.assetControl.hasError('required')">Asset is required.</span>
+                  </div>
+              </div>
           </div>
+
+          <!-- Category -->
           <div class="mb-3 row">
-            <label class="col-2 col-form-label" for="roi">ROI (%)</label>
-            <div class="col-10">
-              <input type="number" class="form-control" id="roi" placeholder="ROI" formControlName="roiControl" />
-            </div>
+              <label class="col-2 col-form-label" for="category">Category</label>
+              <div class="col-10">
+                  <input type="text" class="form-control" id="category" placeholder="Category"
+                         formControlName="categoryControl"
+                         [class.is-invalid]="form.controls.categoryControl.touched && form.controls.categoryControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.categoryControl.hasError('required')">Category is required.</span>
+                  </div>
+              </div>
           </div>
+
+          <!-- Current Value (Cannot be negative) -->
           <div class="mb-3 row">
-            <label class="col-2 col-form-label" for="location">Location</label>
-            <div class="col-10">
-              <input type="text" class="form-control" id="location" placeholder="Location" formControlName="locationControl" />
-            </div>
+              <label class="col-2 col-form-label" for="currentValue">Current Value</label>
+              <div class="col-10">
+                  <input type="number" class="form-control" id="currentValue" placeholder="Current Value"
+                         formControlName="currentValueControl"
+                         [class.is-invalid]="form.controls.currentValueControl.touched && form.controls.currentValueControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.currentValueControl.hasError('required')">Current Value is required.</span>
+                      <span *ngIf="form.controls.currentValueControl.hasError('min')">Value cannot be negative.</span>
+                  </div>
+              </div>
           </div>
+
+          <!-- Purchase Price (Cannot be negative) -->
           <div class="mb-3 row">
-            <label class="col-2 col-form-label" for="purchaseDate">Purchase Date</label>
-            <div class="col-10">
-              <input type="date" class="form-control" id="purchaseDate" formControlName="purchaseDateControl" />
-            </div>
+              <label class="col-2 col-form-label" for="purchasePrice">Purchase Price</label>
+              <div class="col-10">
+                  <input type="number" class="form-control" id="purchasePrice" placeholder="Purchase Price"
+                         formControlName="purchasePriceControl"
+                         [class.is-invalid]="form.controls.purchasePriceControl.touched && form.controls.purchasePriceControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.purchasePriceControl.hasError('required')">Purchase Price is required.</span>
+                      <span *ngIf="form.controls.purchasePriceControl.hasError('min')">Value cannot be negative.</span>
+                  </div>
+              </div>
           </div>
+
+          <!-- ROI (Can be negative) -->
+          <div class="mb-3 row">
+              <label class="col-2 col-form-label" for="roi">ROI (%)</label>
+              <div class="col-10">
+                  <input type="number" class="form-control" id="roi" placeholder="ROI"
+                         formControlName="roiControl"
+                         [class.is-invalid]="form.controls.roiControl.touched && form.controls.roiControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.roiControl.hasError('required')">ROI is required.</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3 row">
+              <label class="col-2 col-form-label" for="location">Location</label>
+              <div class="col-10">
+                  <input type="text" class="form-control" id="location" placeholder="Location"
+                         formControlName="locationControl"
+                         [class.is-invalid]="form.controls.locationControl.touched && form.controls.locationControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.locationControl.hasError('required')">Location is required.</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Purchase Date -->
+          <div class="mb-3 row">
+              <label class="col-2 col-form-label" for="purchaseDate">Purchase Date</label>
+              <div class="col-10">
+                  <input type="date" class="form-control" id="purchaseDate"
+                         formControlName="purchaseDateControl"
+                         [class.is-invalid]="form.controls.purchaseDateControl.touched && form.controls.purchaseDateControl.invalid"/>
+                  <div class="invalid-feedback">
+                      <span *ngIf="form.controls.purchaseDateControl.hasError('required')">Purchase Date is required.</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Buttons -->
           <div class="row gx-0 mt-5">
-            <button type="submit" class="col-5 btn btn-dark">Update Asset</button>
-            <div class="col-2"></div>
-            <button type="button" class="col-5 btn btn-danger" (click)="cancel()">Cancel</button>
+              <button type="submit" class="col-5 btn btn-dark" [disabled]="form.invalid">Update Asset</button>
+              <div class="col-2"></div>
+              <button type="button" class="col-5 btn btn-danger" (click)="cancel()">Cancel</button>
           </div>
-        </form>
-    </fieldset>
+      </form>
+  </fieldset>
 </main>
