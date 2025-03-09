@@ -1,0 +1,149 @@
+
+<div class="container">
+    <h3 class="my-5">Add Asset</h3>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="idasset" placeholder="Asset" [formControl]="assetFC"
+                    [class]="assetFC.touched ? assetFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idasset">Vorname</label>
+                <div class="invalid-feedback">
+                    Please enter an asset
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="idcategory" placeholder="Category" [formControl]="categoryFC"
+                    [class]="categoryFC.touched ? categoryFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idcategory">Category</label>
+                <div class="invalid-feedback">
+                    Please enter the category
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="idcurrentvalue" placeholder="Current Value" [formControl]="currentValueFC"
+                    [class]="currentValueFC.touched ? currentValueFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idcurrentvalue">Current Value</label>
+                <div class="invalid-feedback">
+                    Please enter the current value
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="number" class="form-control" id="idpurchaseprice" placeholder="Purchase Price"
+                    [formControl]="purchasePriceFC"
+                    [class]="purchasePriceFC.touched ? purchasePriceFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idpurchaseprice">Purchase Price</label>
+                <div class="invalid-feedback">
+                    Please enter the purchase price
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="number" class="form-control" id="idroi" placeholder="ROI"
+                    [formControl]="roiFC"
+                    [class]="roiFC.touched ? roiFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idroi">ROI</label>
+                <div class="invalid-feedback">
+                    Please enter the ROI
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="number" class="form-control" id="idlocation" placeholder="Location"
+                    [formControl]="locationFC"
+                    [class]="locationFC.touched ? locationFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idlocation">Location</label>
+                <div class="invalid-feedback">
+                    Please enter the location
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="mb-3 form-floating">
+                <input type="date" class="form-control" id="idpurchasedate" placeholder="Purchase Date"
+                    [formControl]="purchaseDateFC"
+                    [class]="purchaseDateFC.touched ? purchaseDateFC.valid ? 'is-valid' : 'is-invalid' : ''">
+                <label for="idpurchasedate">Purchase Date</label>
+                <div class="invalid-feedback">
+                    Please enter the purchase date
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="w-100 btn btn-dark" (click)="register(content)">Add</button>
+            </div>
+            <div class="col">
+                <button type="button" class="w-100 btn btn-outline-danger" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h6 class="modal-title" id="modal-basic-title">Add new Asset</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Asset</td>
+                        <td>:</td>
+                        <td>{{ assetFC.value }}</td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>:</td>
+                        <td>{{ categoryFC.value }}</td>
+                    </tr>
+                    <tr>
+                        <td>Current Value</td>
+                        <td>:</td>
+                        <td>{{ currentValueFC.value }}</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase Price</td>
+                        <td>:</td>
+                        <td>{{ purchasePriceFC.value }}</td>
+                    </tr>
+                    <tr>
+                        <td>ROI</td>
+                        <td>:</td>
+                        <td>{{ roiFC.value }}</td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>:</td>
+                        <td>{{ locationFC.value }}</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase Date</td>
+                        <td>:</td>
+                        <td>{{ purchaseDateFC.value }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+        </div>
+    </ng-template>
