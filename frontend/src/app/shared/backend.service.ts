@@ -41,7 +41,7 @@ export class BackendService {
   }
 
   getCategoryDistribution(): Observable<any[]> {
-    let endpoint = '/dashboard'; // Assuming this is the correct backend route
+    let endpoint = '/category-distribution'; // Assuming this is the correct backend route
     return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
   }
 }
