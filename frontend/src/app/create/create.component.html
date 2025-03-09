@@ -99,7 +99,7 @@
     </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="w-100 btn btn-dark" (click)="register(content)">Add</button>
+                <button type="button" class="w-100 btn btn-dark" (click)="register(content)" [disabled]="!formValid()">Add</button>
             </div>
             <div class="col">
                 <button type="button" class="w-100 btn btn-outline-danger" (click)="cancel()">Cancel</button>

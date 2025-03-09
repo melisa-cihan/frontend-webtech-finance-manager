@@ -19,6 +19,7 @@ export class CreateComponent {
   closeResult = '';
   private modalService: NgbModal = inject(NgbModal);
 
+  
   assetFC = new FormControl('', [Validators.required]);
   categoryFC = new FormControl('', [Validators.required]);
   currentValueFC = new FormControl(null, [Validators.required, Validators.min(0)]);
@@ -27,7 +28,7 @@ export class CreateComponent {
   locationFC = new FormControl('', [Validators.required]);
   purchaseDateFC = new FormControl(new Date, [Validators.required]);
 
-  private formValid() {
+  public formValid() {
     return this.assetFC.valid && this.categoryFC.valid && this.currentValueFC.valid && this.purchasePriceFC.valid && this.roiFC.valid && this.locationFC.valid && this.purchaseDateFC.valid;
   }
 
@@ -81,7 +82,7 @@ export class CreateComponent {
     this.roiFC.reset();
     this.locationFC.reset();
     this.purchaseDateFC.reset();
-    
+
   }
 
   private getDismissReason(reason: any): string {
