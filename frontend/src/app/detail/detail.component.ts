@@ -3,11 +3,12 @@ import { BackendService } from '../shared/backend.service';
 import { Asset} from '../shared/asset';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css'
 })
@@ -54,11 +55,8 @@ export class DetailComponent implements OnInit{
   }
   
   update(): void {
-    if (this.form.invalid) {
-      console.warn('Form is invalid, update aborted!');
-      return;
-    }
     
+    if (this.form.valid) {
     const values = this.form.value;
     this.asset.asset = values.assetControl!;
     this.asset.category = values.categoryControl!;
@@ -78,6 +76,10 @@ export class DetailComponent implements OnInit{
       console.error('Error updating asset:', err);
     }
     });
+
+   } else {
+    console.warn('Form is invalid. Please check the fields.');
+    }
   }
   
   cancel(): void {
