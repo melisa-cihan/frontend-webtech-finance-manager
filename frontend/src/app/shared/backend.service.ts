@@ -41,7 +41,12 @@ export class BackendService {
   }
 
   getCategoryDistribution(): Observable<any[]> {
-    let endpoint = '/category-distribution'; // Assuming this is the correct backend route
+    let endpoint = '/category-distribution'; 
+    return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
+  }
+
+  getAssetGrowth(): Observable<any[]> {
+    let endpoint = '/asset-growth'; 
     return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
   }
 }
