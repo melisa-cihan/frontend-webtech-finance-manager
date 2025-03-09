@@ -7,3 +7,14 @@ canvas {
     margin: 0 auto;
   }
   
+  /* Line Chart Styling */
+.line-chart-container {
+    width: 48%; /* Adjust width as needed */
+    height: 500px; /* Makes it bigger */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  

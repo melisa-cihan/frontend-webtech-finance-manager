@@ -6,6 +6,7 @@ import { Chart, ChartDataset, ChartOptions, ChartType, ChartConfiguration } from
 import { CategoryData } from '../shared/category-data';
 import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts'; 
+import moment from 'moment';
 
 
 @Component({
@@ -56,10 +57,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getAssetGrowth(): void {
     this.backendService.getAssetGrowth().subscribe(
       (data) => {
-        this.assetGrowthDates = data.map((item) => item.purchase_date);
+        this.assetGrowthDates = data.map((item) => moment(item.purchase_date).format('YYYY-MM-DD'));
         this.assetGrowthValues = data.map((item) => item.total_value);
   
-        // Once data is fetched, update the chart
+        
         if (this.lineChart) {
           this.lineChart.data.labels = this.assetGrowthDates;
           this.lineChart.data.datasets[0].data = this.assetGrowthValues;
@@ -119,7 +120,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         },
         scales: {
           x: { title: { display: true, text: 'Date' } },
-          y: { title: { display: true, text: 'Total Value ($)' } },
+          y: { beginAtZero: true, title: { display: true, text: 'Total Value (€)' } },
         },
       },
     });
