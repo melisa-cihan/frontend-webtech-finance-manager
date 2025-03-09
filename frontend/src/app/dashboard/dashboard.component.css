@@ -1,8 +1,8 @@
 canvas {
     width: 100%;
-    max-width: 500px;  /* Maximum width */
-    height: auto;      /* Automatically adjust height based on aspect ratio */
-    max-height: 500px; /* Maximum height */
+    max-width: 500px;  
+    height: auto;      
+    max-height: 500px; 
     display: block;
     margin: 0 auto;
   }

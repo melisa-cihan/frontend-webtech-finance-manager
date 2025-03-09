@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   createChart(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     new Chart(ctx, {
-      type: 'pie',  // Type of the chart
+      type: 'pie',  
       data: {
         labels: this.pieChartLabels,
         datasets: [
