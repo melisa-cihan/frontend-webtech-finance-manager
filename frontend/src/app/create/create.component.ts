@@ -81,8 +81,7 @@ export class CreateComponent {
     this.roiFC.reset();
     this.locationFC.reset();
     this.purchaseDateFC.reset();
-
-    this.router.navigate(['/assets']);
+    
   }
 
   private getDismissReason(reason: any): string {
