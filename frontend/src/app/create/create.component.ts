@@ -3,11 +3,12 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BackendService } from '../shared/backend.service';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [ReactiveFormsModule, NgbDatepickerModule],
+  imports: [ReactiveFormsModule, NgbDatepickerModule, CommonModule],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
@@ -18,12 +19,11 @@ export class CreateComponent {
   closeResult = '';
   private modalService: NgbModal = inject(NgbModal);
 
-
   assetFC = new FormControl('', [Validators.required]);
   categoryFC = new FormControl('', [Validators.required]);
   currentValueFC = new FormControl(null, [Validators.required, Validators.min(0)]);
   purchasePriceFC = new FormControl(null, [Validators.required, Validators.min(0)]);
-  roiFC = new FormControl(null, [Validators.required, Validators.min(0)]);
+  roiFC = new FormControl(null, [Validators.required]);
   locationFC = new FormControl('', [Validators.required]);
   purchaseDateFC = new FormControl(new Date, [Validators.required]);
 
@@ -95,5 +95,7 @@ export class CreateComponent {
         return `with: ${reason}`;
     }
   }
+
+
 
 }
