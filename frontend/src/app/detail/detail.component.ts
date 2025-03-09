@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { BackendService } from '../shared/backend.service';
 import { Asset} from '../shared/asset';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail',
@@ -20,13 +20,13 @@ export class DetailComponent implements OnInit{
   asset!: Asset;
   id: string | null = ''
   form = new FormGroup({
-    assetControl: new FormControl<string>(''),
-    categoryControl: new FormControl<string>(''),
-    currentValueControl: new FormControl<number | null>(null),
-    purchasePriceControl: new FormControl<number | null>(null),
-    roiControl: new FormControl<number | null>(null),
-    locationControl: new FormControl<string>(''),
-    purchaseDateControl: new FormControl<Date | null>(null)
+    assetControl: new FormControl<string>('', [Validators.required]),
+    categoryControl: new FormControl<string>('', [Validators.required]),
+    currentValueControl: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+    purchasePriceControl: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+    roiControl: new FormControl<number | null>(null, [Validators.required]),
+    locationControl: new FormControl<string>('', [Validators.required]),
+    purchaseDateControl: new FormControl<Date | null>(null, [Validators.required])
 });
 
   ngOnInit(): void {
@@ -54,6 +54,11 @@ export class DetailComponent implements OnInit{
   }
   
   update(): void {
+    if (this.form.invalid) {
+      console.warn('Form is invalid, update aborted!');
+      return;
+    }
+    
     const values = this.form.value;
     this.asset.asset = values.assetControl!;
     this.asset.category = values.categoryControl!;
