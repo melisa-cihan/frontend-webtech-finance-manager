@@ -1,1 +1,17 @@
-<p>dashboard works!</p>
+<div *ngIf="categoryDistribution.length > 0">
+    <div style="display: block;">
+      <canvas
+        baseChart
+        [datasets]="[{ data: pieChartData }]"
+        [labels]="pieChartLabels"
+        [type]="pieChartType"
+        [options]="pieChartOptions">
+      </canvas>
+    </div>
+  </div>
+  
+  <!-- Optionally, a loading message while waiting for the data -->
+  <div *ngIf="categoryDistribution.length === 0">
+    <p>Loading data...</p>
+  </div>
+  

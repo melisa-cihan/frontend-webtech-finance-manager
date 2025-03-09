@@ -39,4 +39,9 @@ export class BackendService {
     let endpoint = '/assets';
     return this.http.put<Asset>(this.backendURL + endpoint + "/" + id, asset);
   }
+
+  getCategoryDistribution(): Observable<any[]> {
+    let endpoint = '/dashboard'; // Assuming this is the correct backend route
+    return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
+  }
 }
