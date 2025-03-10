@@ -2,7 +2,7 @@ import { Component, OnInit, inject, AfterViewInit, ViewChild, ElementRef } from 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { BackendService } from '../shared/backend.service';
-import { Chart, ChartDataset, ChartOptions, ChartType, ChartConfiguration } from 'chart.js';
+import { Chart, ChartDataset, ChartOptions, ChartType, ChartConfiguration,  ChartData } from 'chart.js';
 import { CategoryData } from '../shared/category-data';
 import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts'; 
@@ -33,23 +33,33 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         text: 'Total Value per Category Distribution'
       }
     }
+
+    
   };
   
-
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
   lineChart!: Chart;
   assetGrowthDates: string[] = [];
   assetGrowthValues: number[] = [];
+
+  // Properties for Polar Area Chart
+  @ViewChild('polarChartCanvas') polarChartCanvas!: ElementRef;
+  polarChart!: Chart;
+  polarChartLabels: string[] = [];
+  polarChartData: number[] = [];
+
   
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
     this.getCategoryDistribution();
     this.getAssetGrowth();
+    this.getAssetLocationCount();
   }
 
   ngAfterViewInit(): void {
     this.createLineChart();
+    this.createPolarChart();
   }
 
   getCategoryDistribution(): void {
@@ -81,6 +91,56 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       (error) => console.error('Error fetching asset growth data:', error)
     );
   }
+
+  //Fetching the asset location count
+  getAssetLocationCount(): void {
+    this.backendService.getAssetLocationCount().subscribe(
+      (data: any[]) => {
+        this.polarChartLabels = data.map(item => item.location);
+        this.polarChartData = data.map(item => item.asset_count);
+        // Ensure the chart is updated when data is fetched
+        this.createPolarChart();
+      },
+      (error) => {
+        console.error('Error fetching asset location count', error);
+      }
+    );
+  }
+
+  // Creating the Polar Area Chart
+  createPolarChart(): void {
+    const ctx = this.polarChartCanvas.nativeElement.getContext('2d');
+    
+    // Ensure chart is created only if data exists
+    if (this.polarChartLabels.length > 0 && this.polarChartData.length > 0) {
+      this.polarChart = new Chart(ctx, {
+        type: 'polarArea' as ChartType,  // Cast to ChartType to avoid type issues
+        data: {
+          labels: this.polarChartLabels,
+          datasets: [
+            {
+              label: 'Asset Count per Location',
+              data: this.polarChartData,
+              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            title: {
+              display: true,
+              text: 'Polar Chart Asset Count by Location',
+            },
+          },
+        },
+      });
+    }
+  }
+
 
 
   createChart(): void {

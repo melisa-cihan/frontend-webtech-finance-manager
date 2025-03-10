@@ -49,4 +49,10 @@ export class BackendService {
     let endpoint = '/asset-growth'; 
     return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
   }
+
+  getAssetLocationCount(): Observable<any[]> {
+    let endpoint = '/asset-location-count'; 
+    return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
+  }
+
 }

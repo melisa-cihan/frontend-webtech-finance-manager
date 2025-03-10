@@ -33,3 +33,13 @@
     width: 100%;
     height: 100%; /* Fill the container */
   }
+
+  /*Polar Chart*/
+.chart-container {
+  width: 100%;
+  max-width: 600px; /* Adjust the width to your preference */
+  height: 400px; /* Limit the height of the Polar Area Chart */
+  margin-top: 20px;
+  display: block;
+  text-align: center; /* Center the chart */
+}
