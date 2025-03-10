@@ -21,9 +21,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   pieChartLabels: string[] = [];
   pieChartData: number[] = [];
   pieChartType: ChartType = 'pie';  ;
-  pieChartOptions: any = {
-    responsive: true
+  pieChartOptions: ChartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        text: 'Total Value per Category Distribution'
+      }
+    }
   };
+  
 
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
   lineChart!: Chart;

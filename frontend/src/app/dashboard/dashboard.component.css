@@ -6,15 +6,16 @@
   }
   
   /* Pie Chart Styling */
-  .pie-chart-container {
-    width: 48%; /* Adjust width as needed */
-    max-width: 500px; /* Optional: Set a max width */
+.pie-chart-container {
+    width: 48%;
+    max-width: 500px;
+    text-align: center; /* Center the title */
   }
   
   .pie-chart-container canvas {
     width: 100%;
     height: auto;
-    max-height: 400px; /* Adjust height as needed */
+    max-height: 400px;
     display: block;
     margin: 0 auto;
   }

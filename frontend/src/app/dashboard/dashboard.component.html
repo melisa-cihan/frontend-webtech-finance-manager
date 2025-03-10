@@ -1,15 +1,15 @@
 <div class="charts-container">
     <div *ngIf="categoryDistribution.length > 0" class="pie-chart-container">
-      <div style="display: block;">
-        <canvas
-          baseChart
-          [datasets]="[{ data: pieChartData }]"
-          [labels]="pieChartLabels"
-          [type]="pieChartType"
-          [options]="pieChartOptions">
-        </canvas>
+        <div style="display: block;">
+          <canvas
+            baseChart
+            [datasets]="[{ data: pieChartData }]"
+            [labels]="pieChartLabels"
+            [type]="pieChartType"
+            [options]="pieChartOptions">
+          </canvas>
+        </div>
       </div>
-    </div>
   
     <div class="line-chart-container">
       <canvas #lineChartCanvas></canvas>
