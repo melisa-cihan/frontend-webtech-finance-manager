@@ -55,11 +55,6 @@ export class AssetsComponent implements OnInit {
     });
   }
 
-  // Method to reload the data from the backend (to restore deleted entries)
-  reloadData(): void {
-    this.readAll();  // Simply call readAll to re-fetch the data
-  }
-
    // Filter the assets based on the search term
    filterAssets(searchTerm: string): void {
     if (!searchTerm) {

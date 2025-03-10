@@ -3,14 +3,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assets</title>
   </head>
+
+  <div class="container my-5">
+    <!-- Card Component -->
+    <div class="card">
+      <div class="card-body">
+        <!-- Card Title with Icon -->
+        <h1 class="display-4 text-center">
+          <i class="bi bi-bank icon-black"></i> Assets
+        </h1>
+        <!-- Line Under the Title -->
+        <hr style="width: 50%; margin: auto;">
+        <!-- Card Description -->
+        <p class="text-center">Manage your Finances</p>
+      </div>
+    </div>
+  </div>
+  
+
   <div class="container-xxl mt-5 ">
-    <h3>All Assets</h3>
+    <h3>Search</h3>
     <input placeholder="filter" type="text" [formControl]="search" />
     <p></p>
-
-    <button (click)="reloadData()" class="btn btn-primary mb-3">
-      Reload Data
-    </button>
   
     <div class="table-responsive">
       <table class="table table-striped table-hover" style="min-width: 1000px;">
