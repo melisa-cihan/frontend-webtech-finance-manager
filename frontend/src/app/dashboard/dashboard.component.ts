@@ -115,6 +115,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        layout: {
+          padding: {
+            left: 20, // Increase this value to add more space on the left
+            right: 200, // Adjust other paddings as needed
+            top: 20,
+            bottom: 20,
+          },
+        },
         plugins: {
           legend: { display: true },
         },

@@ -1,5 +1,5 @@
-<div *ngIf="categoryDistribution.length > 0">
-    <div class="pie-chart-container">
+<div class="charts-container">
+    <div *ngIf="categoryDistribution.length > 0" class="pie-chart-container">
       <div style="display: block;">
         <canvas
           baseChart
@@ -10,14 +10,12 @@
         </canvas>
       </div>
     </div>
+  
+    <div class="line-chart-container">
+      <canvas #lineChartCanvas></canvas>
+    </div>
   </div>
   
-  <div class="line-chart-container">
-    <canvas #lineChartCanvas></canvas>
-  </div>
-  
-  <!-- Optionally, a loading message while waiting for the data -->
   <div *ngIf="categoryDistribution.length === 0">
     <p>Loading data...</p>
   </div>
-  

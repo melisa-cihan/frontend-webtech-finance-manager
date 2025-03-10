@@ -1,20 +1,34 @@
-canvas {
+/* Container for both charts */
+.charts-container {
+    display: flex;
+    justify-content: space-between; /* Space them out */
+    align-items: flex-start; /* Align to the top */
+  }
+  
+  /* Pie Chart Styling */
+  .pie-chart-container {
+    width: 48%; /* Adjust width as needed */
+    max-width: 500px; /* Optional: Set a max width */
+  }
+  
+  .pie-chart-container canvas {
     width: 100%;
-    max-width: 500px;  
-    height: auto;      
-    max-height: 500px; 
+    height: auto;
+    max-height: 400px; /* Adjust height as needed */
     display: block;
     margin: 0 auto;
   }
   
   /* Line Chart Styling */
-.line-chart-container {
+  .line-chart-container {
     width: 48%; /* Adjust width as needed */
-    height: 500px; /* Makes it bigger */
+    height: 400px; /* Adjust height as needed */
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  
-  
+  .line-chart-container canvas {
+    width: 100%;
+    height: 100%; /* Fill the container */
+  }
