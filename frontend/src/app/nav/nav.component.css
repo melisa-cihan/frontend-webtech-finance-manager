@@ -1,0 +1,16 @@
+/* Customizing the focus ring for nav links */
+.nav-link:focus, .navbar-brand:focus{
+    outline: 3px solid #030000; /* Blue color, or you can change it to any color */
+    outline-offset: 2px; /* Adds a little distance from the element */
+    border-radius: 50px;
+  }
+  
+  /* Zoom effect on nav-link items */
+.nav-link:hover, .navbar-brand:focus {
+    transform: scale(1.05); /* Slight zoom effect */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    background-color: black; /* Darker green (Bootstrap success color) */
+    color: white; /* Text color when hovered */
+    border-radius: 50px;
+  }
+  
