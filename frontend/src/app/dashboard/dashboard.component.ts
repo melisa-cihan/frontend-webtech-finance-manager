@@ -83,14 +83,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       const content = this.dashboardContent.nativeElement;
       
-      html2canvas(content, { scale: 2 }).then(canvas => {
+      html2canvas(content, { scale: 4, useCORS: true  }).then(canvas => {
         const imgData = canvas.toDataURL('image/png'); 
         const pdf = new jsPDF('p', 'mm', 'a4');
         
-        const imgWidth = 190; // Fit image to A4 width
+        const imgWidth = 200; // Fit image to A4 width
         const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
   
-        pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+        pdf.addImage(imgData, 'PNG', 5, 5, imgWidth, imgHeight);
         pdf.save('dashboard.pdf');
       });
     }, 500); // Small delay to let updates render
