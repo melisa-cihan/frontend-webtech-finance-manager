@@ -1,44 +1,44 @@
 /* Container for both charts */
 .charts-container {
-    display: flex;
-    justify-content: space-between; /* Space them out */
-    align-items: flex-start; /* Align to the top */
-  }
-  
-  /* Pie Chart Styling */
-.pie-chart-container {
-    width: 48%;
-    max-width: 500px;
-    text-align: center; /* Center the title */
-  }
-  
-  .pie-chart-container canvas {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  /* Line Chart Styling */
-  .line-chart-container {
-    width: 48%; /* Adjust width as needed */
-    height: 400px; /* Adjust height as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .line-chart-container canvas {
-    width: 100%;
-    height: 100%; /* Fill the container */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
- /* Polar Chart */
-.chart-container {
+/* Pie Chart Styling */
+.pie-chart-container {
+  width: 48%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.pie-chart-container canvas {
   width: 100%;
-  max-width: 700px; /* Increased width */
-  height: 600px; /* Increased height */
+  height: auto;
+  max-height: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Line Chart Styling */
+.line-chart-container {
+  width: 48%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-chart-container canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Polar Chart */
+.chart-container {
+  width: 50%; /* Adjusted width */
+  max-width: 600px;
+  height: 600px;
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -48,12 +48,29 @@
 
 .chart-container canvas {
   width: 100%;
-  max-height: 500px; /* Increased max-height */
+  max-height: 500px;
 }
 
+/* Bubble Chart */
 .bubble-chart-container {
-  width: 100%;
+  width: 50%; /* Adjusted width */
   max-width: 600px;
-  height: 400px;
-  margin: auto;
+  height: 600px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bubble-chart-container canvas {
+  width: 100%;
+  max-height: 500px;
+}
+
+/* Container for Polar and Bubble Charts */
+.polar-bubble-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

@@ -1,32 +1,31 @@
 <div class="charts-container">
-    <div *ngIf="categoryDistribution.length > 0" class="pie-chart-container">
-        <div style="display: block;">
-          <canvas
-            baseChart
-            [datasets]="[{ data: pieChartData }]"
-            [labels]="pieChartLabels"
-            [type]="pieChartType"
-            [options]="pieChartOptions">
-          </canvas>
-        </div>
-      </div>
-  
-    <div class="line-chart-container">
-      <canvas #lineChartCanvas></canvas>
+  <div *ngIf="categoryDistribution.length > 0" class="pie-chart-container">
+    <div style="display: block;">
+      <canvas
+        baseChart
+        [datasets]="[{ data: pieChartData }]"
+        [labels]="pieChartLabels"
+        [type]="pieChartType"
+        [options]="pieChartOptions">
+      </canvas>
     </div>
   </div>
 
-  <!-- Polar Area Chart Canvas -->
-<div class="chart-container">
-  <canvas #polarChartCanvas></canvas>
-</div>
-
-<div class="chart-container">
-  <canvas #bubbleChartCanvas></canvas>
-</div>
-
-
-  
-  <div *ngIf="categoryDistribution.length === 0">
-    <p>Loading data...</p>
+  <div class="line-chart-container">
+    <canvas #lineChartCanvas></canvas>
   </div>
+</div>
+
+<div class="polar-bubble-container">
+  <div class="chart-container">
+    <canvas #polarChartCanvas></canvas>
+  </div>
+
+  <div class="bubble-chart-container">
+    <canvas #bubbleChartCanvas></canvas>
+  </div>
+</div>
+
+<div *ngIf="categoryDistribution.length === 0">
+  <p>Loading data...</p>
+</div>
