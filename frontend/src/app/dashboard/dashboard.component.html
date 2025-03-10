@@ -1,3 +1,8 @@
+
+<div #dashboardContent> 
+  <button (click)="downloadDashboard()" class="download-btn">Download Dashboard as PDF</button>
+
+
 <div class="charts-container">
   <div *ngIf="categoryDistribution.length > 0" class="pie-chart-container">
     <div style="display: block;">
@@ -26,6 +31,8 @@
   </div>
 </div>
 
-<div *ngIf="categoryDistribution.length === 0">
-  <p>Loading data...</p>
+
+  <div *ngIf="categoryDistribution.length === 0">
+    <p>Loading data...</p>
+  </div>
 </div>

@@ -7,7 +7,8 @@ import { CategoryData } from '../shared/category-data';
 import { CommonModule } from '@angular/common';
 import { NgChartsModule } from 'ng2-charts'; 
 import moment from 'moment';
-
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ import moment from 'moment';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+  
   categoryDistribution: CategoryData[] = [];
   
   pieChartLabels: string[] = [];
@@ -37,7 +39,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   };
 
  
-  
+  @ViewChild('dashboardContent', { static: false }) dashboardContent!: ElementRef;
   
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
   lineChart!: Chart;
@@ -70,6 +72,30 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.createLineChart();
     this.createPolarChart();
   }
+
+  // Method to capture the dashboard and generate a PDF
+  downloadDashboard(): void {
+    // Ensure charts are updated before capturing
+    this.lineChart.update();
+    this.polarChart.update();
+    this.bubbleChart.update();
+  
+    setTimeout(() => {
+      const content = this.dashboardContent.nativeElement;
+      
+      html2canvas(content, { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png'); 
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        const imgWidth = 190; // Fit image to A4 width
+        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+  
+        pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+        pdf.save('dashboard.pdf');
+      });
+    }, 500); // Small delay to let updates render
+  }
+  
 
   getCategoryDistribution(): void {
     this.backendService.getCategoryDistribution().subscribe(
