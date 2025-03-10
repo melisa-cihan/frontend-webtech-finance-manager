@@ -15,10 +15,6 @@ export class BackendService {
   getAllAssets(): Observable<Asset[]> {
     return this.http.get<Asset[]>(`${this.backendURL}/assets`); 
   }
-  
-  /**getAllAssets(): Observable<Asset[]>{
-    return this.http.get<Asset[]>(this.backendURL);
-  }**/
 
   deleteOneAsset(id: string): Observable<any> {
     let endpoint = '/assets';
@@ -52,6 +48,11 @@ export class BackendService {
 
   getAssetLocationCount(): Observable<any[]> {
     let endpoint = '/asset-location-count'; 
+    return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
+  }
+
+  getAssetProfitability(): Observable<any[]> {
+    let endpoint = '/asset-profitability'; 
     return this.http.get<any[]>(`${this.backendURL}${endpoint}`);
   }
 

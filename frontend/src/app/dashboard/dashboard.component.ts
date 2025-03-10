@@ -18,6 +18,7 @@ import moment from 'moment';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   categoryDistribution: CategoryData[] = [];
+  
   pieChartLabels: string[] = [];
   pieChartData: number[] = [];
   pieChartType: ChartType = 'pie';  ;
@@ -32,10 +33,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         display: true,
         text: 'Total Value per Category Distribution'
       }
-    }
-
-    
+    }  
   };
+
+ 
+  
   
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
   lineChart!: Chart;
@@ -48,6 +50,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   polarChartLabels: string[] = [];
   polarChartData: number[] = [];
 
+  @ViewChild('bubbleChartCanvas') bubbleChartCanvas!: ElementRef;
+  bubbleChart!: Chart;
+  bubbleChartData: any[] = [];
+  bubbleChartLabels: string[] = [];
+
+
   
   constructor(private backendService: BackendService) { }
 
@@ -55,6 +63,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCategoryDistribution();
     this.getAssetGrowth();
     this.getAssetLocationCount();
+    this.getAssetProfitability();
   }
 
   ngAfterViewInit(): void {
@@ -106,6 +115,85 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
+  getAssetProfitability(): void {
+    this.backendService.getAssetProfitability().subscribe(
+        (data: any[]) => {
+          this.bubbleChartLabels = data.map(item => item.asset); // Asset names as labels
+
+          this.bubbleChartData = data.map((item, index) => ({
+              x: index,  // Use index instead of asset names
+              y: item.roi, // ROI (%) on Y-axis
+              r: Math.sqrt(item.current_value) / 10 // Bubble size based on value
+          }));
+
+          this.createBubbleChart();
+      },
+      (error) => console.error('Error fetching profitability data:', error)
+  );
+}
+
+
+//create bubble chart
+createBubbleChart(): void {
+  const ctx = this.bubbleChartCanvas.nativeElement.getContext('2d');
+
+  this.bubbleChart = new Chart(ctx, {
+      type: 'bubble' as ChartType,
+      data: {
+          datasets: [{
+              label: 'Profitability per Asset',
+              data: this.bubbleChartData,
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              title: {
+                  display: true,
+                  text: 'Profitability Per Asset (ROI % vs Current Value)'
+              },
+              tooltip: {
+                  callbacks: {
+                      label: (context) => {
+                          // Type assertion to 'BubbleChartDataPoint'
+                          const dataPoint = context.raw as { x: number; y: number; r: number }; 
+
+                          const assetName = this.bubbleChartLabels[context.dataIndex]; // Get asset name
+                          const roi = dataPoint.y; // ROI (%)
+                          const value = Math.pow(dataPoint.r * 10, 2); // Reverse scale to actual value
+
+                          return `${assetName}: ROI ${roi}% | Value: €${value.toFixed(2)}`;
+                      }
+                  }
+              }
+          },
+          scales: {
+              x: {
+                  type: 'category',
+                  labels: this.bubbleChartLabels, // Assign asset names to X-axis
+                  title: {
+                      display: true,
+                      text: 'Assets'
+                  }
+              },
+              y: {
+                  title: {
+                      display: true,
+                      text: 'ROI (%)'
+                  }
+              }
+          }
+      }
+  });
+}
+
+
+
 
   // Creating the Polar Area Chart
   createPolarChart(): void {
