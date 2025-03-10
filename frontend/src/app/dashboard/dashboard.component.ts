@@ -121,12 +121,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             {
               label: 'Asset Count per Location',
               data: this.polarChartData,
-              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+              backgroundColor: ['#87CEFA', '#001eff', '#FFFF00', '#FF0000', '#FF1493', '#FF4500', '#ADFF2F' ],
             },
           ],
         },
         options: {
           responsive: true,
+          layout:{
+            padding:{
+              bottom: 50,
+            },
+          },
           plugins: {
             legend: {
               position: 'bottom',
@@ -153,7 +158,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           {
             data: this.pieChartData,
             backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], 
           },
         ],
       },
@@ -188,6 +193,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         maintainAspectRatio: false,
         layout: {
           padding: {
+
             left: 20, // Increase this value to add more space on the left
             right: 200, // Adjust other paddings as needed
             top: 20,
