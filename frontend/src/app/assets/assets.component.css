@@ -41,3 +41,7 @@ i {
 .icon-black {
   color: black;
 }
+
+.table th, .table td, .display-4 {
+  font-family: 'Roboto', sans-serif; 
+}
