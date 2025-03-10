@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
       title: {
         display: true,
-        text: 'Total Value per Category Distribution'
+        text: 'Pie Chart: Total Value per Category Distribution'
       }
     }  
   };
@@ -155,7 +155,7 @@ createBubbleChart(): void {
           plugins: {
               title: {
                   display: true,
-                  text: 'Profitability Per Asset (ROI % vs Current Value)'
+                  text: 'Bubble Chart: Profitability Per Asset (ROI % vs Current Value)'
               },
               tooltip: {
                   callbacks: {
@@ -226,7 +226,7 @@ createBubbleChart(): void {
             },
             title: {
               display: true,
-              text: 'Polar Chart Asset Count by Location',
+              text: 'Polar Chart: Asset Count by Location',
             },
           },
         },
@@ -295,6 +295,10 @@ createBubbleChart(): void {
         },
         plugins: {
           legend: { display: true },
+          title: {
+            display: true,
+            text: 'Line Chart: Total Asset Value Over Time'
+        },
         },
         scales: {
           x: { title: { display: true, text: 'Date' } },
