@@ -164,6 +164,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
       options: {
         responsive: true,
+        layout:{
+          padding:{
+            top: 50,
+          },
+        },
       },
     });
   }
