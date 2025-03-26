@@ -17,12 +17,19 @@ export class AssetsComponent implements OnInit {
   filteredAssets!: Asset[]; 
   search = new FormControl();
   assetToDeleteId: string | null = null; // Store asset ID to delete
+  assetToDelete: Asset | null = null;
 
   constructor(private bs: BackendService, private router: Router) { }
 
+ 
   ngOnInit(): void {
-    this.readAll()
-    this.search.valueChanges.subscribe(value => this.filterAssets(value));
+    this.bs.assets$.subscribe((assets) => {
+      this.asset = assets;
+      this.filteredAssets = [...this.asset]; // Automatically updates when assets change
+    });
+
+    this.readAll();
+    this.search.valueChanges.subscribe((value) => this.filterAssets(value));
   }
 
   readAll(): void {
@@ -40,23 +47,25 @@ export class AssetsComponent implements OnInit {
   }
 
   // Open the delete confirmation modal and store the ID
-  openDeleteModal(id: string): void {
-    this.assetToDeleteId = id;
+  openDeleteModal(asset: Asset): void {
+    this.assetToDelete = asset;
   }
 
-   // Confirm deletion
+  // Confirm and delete the asset
   confirmDelete(): void {
-    if (this.assetToDeleteId) {
-      this.bs.deleteOneAsset(this.assetToDeleteId).subscribe({
-        next: () => {
-          // Remove asset from arrays
-          this.asset = this.asset.filter(a => a.id !== this.assetToDeleteId);
-          this.filteredAssets = this.filteredAssets.filter(a => a.id !== this.assetToDeleteId);
-          console.log(`Asset with ID ${this.assetToDeleteId} deleted successfully`);
-        },
-        error: (err) => console.error('Error deleting asset:', err),
-        complete: () => console.log('Delete operation completed')
-      });
+    if (this.assetToDelete){
+
+    this.bs.deleteOneAsset(this.assetToDelete.id).subscribe({
+      next: () => {
+        this.asset = this.asset.filter(a => a.id !== this.assetToDelete!.id);
+        this.filteredAssets = this.filteredAssets.filter(a => a.id !== this.assetToDelete!.id);
+        console.log(`Asset "${this.assetToDelete?.asset}" deleted successfully`);
+      },
+      error: (err) => console.error('Error deleting asset:', err),
+      complete: () => console.log('Delete operation completed'),
+    });
+
+    this.assetToDelete = null; // Reset after deletion
     }
   }
 
@@ -66,13 +75,21 @@ export class AssetsComponent implements OnInit {
       this.filteredAssets = [...this.asset]; // If the search term is empty, show all assets
     } else {
       searchTerm = searchTerm.toLowerCase(); // Make search term case-insensitive
+
       this.filteredAssets = this.asset.filter(a => 
         a.asset.toLowerCase().includes(searchTerm) || // Search by asset name
         a.category.toLowerCase().includes(searchTerm) || // Search by category
         a.location.toLowerCase().includes(searchTerm) || // Search by location
-        a.purchase_date.toString().toLowerCase().includes(searchTerm) // Search by purchase date
+        this.formatDate(a.purchase_date).includes(searchTerm)
       );
     }
   }
+
+  // Format the date exactly like the Angular HTML pipe
+private formatDate(date: any): string {
+  if (!date) return '';
+  const d = new Date(date);
+  return `${d.getDate().toString().padStart(2, '0')}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getFullYear()}`;
+}
   
 }

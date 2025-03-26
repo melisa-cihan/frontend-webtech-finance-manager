@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Asset } from './asset';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -9,16 +11,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BackendService {
   backendURL = 'http://localhost:3000'
+  private assetsSubject = new BehaviorSubject<Asset[]>([]);
+  assets$ = this.assetsSubject.asObservable(); 
   
   constructor(private http: HttpClient) { }
 
   getAllAssets(): Observable<Asset[]> {
-    return this.http.get<Asset[]>(`${this.backendURL}/assets`); 
+    return this.http.get<Asset[]>(`${this.backendURL}/assets`).pipe(
+      tap((assets) => this.assetsSubject.next(assets)) // Store latest data
+    );
   }
 
   deleteOneAsset(id: string): Observable<any> {
     let endpoint = '/assets';
-    return this.http.delete<any>(this.backendURL + endpoint + "/" + id);
+    return this.http.delete<any>(this.backendURL + endpoint + "/" + id).pipe(
+      tap(() => {
+        // Remove the deleted asset from the stored list
+        const updatedAssets = this.assetsSubject
+          .getValue()
+          .filter((a) => a.id !== id);
+        this.assetsSubject.next(updatedAssets); // Emit new list
+      })
+    );
   }
 
   getOneAsset(id: string): Observable<Asset>{

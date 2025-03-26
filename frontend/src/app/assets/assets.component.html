@@ -57,7 +57,7 @@
                 <a [routerLink]="['/assets', a.id]" class="me-2">
                   <i class="bi bi-pencil-square text-primary"></i>
                 </a>
-                <i (click)="openDeleteModal(a.id)" class="bi bi-trash text-danger" style="cursor: pointer;" 
+                <i (click)="openDeleteModal(a)" class="bi bi-trash text-danger" style="cursor: pointer;" 
                 data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
               </td>  
             </tr>
@@ -74,7 +74,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete this asset?
+          Are you sure you want to delete <strong>{{ assetToDelete?.asset }}</strong>?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" (click)="confirmDelete()" data-bs-dismiss="modal">Delete</button>
