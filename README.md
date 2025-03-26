@@ -1,7 +1,7 @@
 # Welcome to Finance Manager  
 A modern web application to manage and track assets efficiently.  
 
-![Dashboard Screenshot](src/assets/Logo.png)
+![Dashboard Screenshot](frontend/src/assets/Logo.png)
 
 ## Table of Contents 
 0. [About](#about)   
