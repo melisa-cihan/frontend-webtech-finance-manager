@@ -34,7 +34,6 @@
                 <div class="invalid-feedback">
                     Please enter the current value
                 </div>
-                <!-- Custom Number Validation Message -->
                 <div class="invalid-feedback" *ngIf="currentValueFC.hasError('notANumber')">
                     Please enter a valid number.
                 </div>
@@ -154,6 +153,6 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+            <button type="button" class="btn btn-dark" (click)="modal.close('Save click')">Close</button>
         </div>
     </ng-template>
