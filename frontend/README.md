@@ -76,6 +76,12 @@ PGPORT=5432
 ```
 npm run start
 ```
+
+#### Generate Dummy Data via Postman
+In Postman run 
+```
+GET localhost:3000/init
+```
 ### Start the Frontend
 ```
 cd frontend frontend-webtech/frontend
