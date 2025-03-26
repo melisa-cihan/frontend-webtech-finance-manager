@@ -11,6 +11,7 @@ A modern web application to manage and track assets efficiently.
 3. [Getting Started](#getting-started)  
 4. [AI Usage](#ai-usage)
 5. [Screenshots](#screenshots)
+6. [Author](#author)  
 
 
 ## About
@@ -30,7 +31,7 @@ A modern web application to manage and track assets efficiently.
 - Automatic and dynamic Dashboard updates when asset-table entries change 
 - Responsive Bootstrap UI   
 
-## Tech Stack  
+##  Tech Stack  
 - **Frontend:** Angular, TypeScript, HTML, CSS
 - **Backend:** Node.js, Express.js  
 - **Database:** PostgreSQL, Ocean Server  
@@ -59,7 +60,7 @@ git clone https://github.com/melisa-cihan/backend-webtech.git
 cd backend-webtech
 npm install
 ```
-#### Connect to Database
+#### Connect to the Database
 - Connect to the HTW OpenVPN
 
 - In the 'backend-webtech' folder create a .env file to connect to the  Database on the Ocean Server
@@ -80,15 +81,17 @@ npm run start
 cd frontend frontend-webtech/frontend
 npm install
 ```
+#### Run the Frontend
+```
+ng serve
+```
+#### Open the Application in your Browser
+https://localhost:4200
 
-### Install Dependencies
+
 ## AI Usage  
 -
 
-Clone the repository and install dependencies:  
-
-```sh
-git clone https://github.com/yourusername/assets-management.git
-cd assets-management
-npm install
+## Author
+### Melisa Cihan
 
