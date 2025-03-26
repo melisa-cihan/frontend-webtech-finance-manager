@@ -16,7 +16,7 @@ export class AssetsComponent implements OnInit {
   asset!: Asset[];
   filteredAssets!: Asset[]; 
   search = new FormControl();
-  assetToDeleteId: string | null = null; // Store asset ID to delete
+  assetToDeleteId: string | null = null; 
   assetToDelete: Asset | null = null;
 
   constructor(private bs: BackendService, private router: Router) { }
@@ -25,7 +25,7 @@ export class AssetsComponent implements OnInit {
   ngOnInit(): void {
     this.bs.assets$.subscribe((assets) => {
       this.asset = assets;
-      this.filteredAssets = [...this.asset]; // Automatically updates when assets change
+      this.filteredAssets = [...this.asset]; 
     });
 
     this.readAll();
@@ -39,19 +39,18 @@ export class AssetsComponent implements OnInit {
               this.asset = response;
               console.log(this.asset);
               this.filteredAssets = [...this.asset];
-              //return this.asset;
             },
         error: (err) => console.log(err),
         complete: () => console.log('getAll() completed')
       })
   }
 
-  // Open the delete confirmation modal and store the ID
+ 
   openDeleteModal(asset: Asset): void {
     this.assetToDelete = asset;
   }
 
-  // Confirm and delete the asset
+
   confirmDelete(): void {
     if (this.assetToDelete){
 
@@ -65,27 +64,27 @@ export class AssetsComponent implements OnInit {
       complete: () => console.log('Delete operation completed'),
     });
 
-    this.assetToDelete = null; // Reset after deletion
+    this.assetToDelete = null; 
     }
   }
 
-   // Filter the assets based on the search term
+
    filterAssets(searchTerm: string): void {
     if (!searchTerm) {
-      this.filteredAssets = [...this.asset]; // If the search term is empty, show all assets
+      this.filteredAssets = [...this.asset]; 
     } else {
-      searchTerm = searchTerm.toLowerCase(); // Make search term case-insensitive
+      searchTerm = searchTerm.toLowerCase(); 
 
       this.filteredAssets = this.asset.filter(a => 
-        a.asset.toLowerCase().includes(searchTerm) || // Search by asset name
-        a.category.toLowerCase().includes(searchTerm) || // Search by category
-        a.location.toLowerCase().includes(searchTerm) || // Search by location
+        a.asset.toLowerCase().includes(searchTerm) || 
+        a.category.toLowerCase().includes(searchTerm) || 
+        a.location.toLowerCase().includes(searchTerm) || 
         this.formatDate(a.purchase_date).includes(searchTerm)
       );
     }
   }
 
-  // Format the date exactly like the Angular HTML pipe
+  
 private formatDate(date: any): string {
   if (!date) return '';
   const d = new Date(date);

@@ -1,11 +1,11 @@
-/* Container for both charts */
+
 .charts-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-/* Pie Chart Styling */
+
 .pie-chart-container {
   width: 48%;
   max-width: 500px;
@@ -21,7 +21,7 @@
   margin-top: 25px;
 }
 
-/* Line Chart Styling */
+
 .line-chart-container {
   width: 48%;
   height: 400px;
@@ -36,9 +36,9 @@
   height: 100%;
 }
 
-/* Polar Chart */
+
 .chart-container {
-  width: 50%; /* Adjusted width */
+  width: 50%; 
   max-width: 600px;
   height: 600px;
   margin-top: 20px;
@@ -53,17 +53,17 @@
   max-height: 500px;
 }
 
-/* Container for Polar and Bubble Charts */
+
 .polar-bubble-container {
   display: flex;
-  justify-content: space-between; /* Keep the space between */
-  width: 100%; /* Keep full width */
+  justify-content: space-between; 
+  width: 100%; 
 }
 
-/* Bubble Chart */
+
 .bubble-chart-container {
-  width: 48%; /* Adjust width to match line chart */
-  max-width: 48%; /* Adjust max-width to match line chart */
+  width: 48%; 
+  max-width: 48%; 
   height: 600px;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -79,8 +79,8 @@
 }
 
 .btn-success:hover {
-  background-color: green  !important; /* Darker green */
+  background-color: green  !important; 
   color: white !important;
-  transform: scale(1.05); /* Slight zoom effect */
+  transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 }

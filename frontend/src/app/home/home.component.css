@@ -1,10 +1,10 @@
 .btn-success:hover {
-    background-color: green  !important; /* Darker green */
+    background-color: green  !important; 
     color: white !important;
-    transform: scale(1.05); /* Slight zoom effect */
+    transform: scale(1.05); 
     transition: all 0.3s ease-in-out;
   }
 
   .testimonials-section {
-    padding-bottom: 80px; /* Adjust this value as needed */
+    padding-bottom: 80px; 
   }

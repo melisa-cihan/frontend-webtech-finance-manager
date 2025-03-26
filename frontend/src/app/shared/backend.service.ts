@@ -18,7 +18,7 @@ export class BackendService {
 
   getAllAssets(): Observable<Asset[]> {
     return this.http.get<Asset[]>(`${this.backendURL}/assets`).pipe(
-      tap((assets) => this.assetsSubject.next(assets)) // Store latest data
+      tap((assets) => this.assetsSubject.next(assets)) 
     );
   }
 
@@ -26,11 +26,10 @@ export class BackendService {
     let endpoint = '/assets';
     return this.http.delete<any>(this.backendURL + endpoint + "/" + id).pipe(
       tap(() => {
-        // Remove the deleted asset from the stored list
         const updatedAssets = this.assetsSubject
           .getValue()
           .filter((a) => a.id !== id);
-        this.assetsSubject.next(updatedAssets); // Emit new list
+        this.assetsSubject.next(updatedAssets); 
       })
     );
   }

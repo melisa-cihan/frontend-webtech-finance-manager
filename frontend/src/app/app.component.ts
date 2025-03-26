@@ -10,7 +10,7 @@ import { AssetsComponent } from './assets/assets.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, HeaderComponent, FooterComponent, RouterModule, AssetsComponent],  
+  imports: [RouterOutlet, NavComponent, HeaderComponent, FooterComponent, RouterModule],  
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

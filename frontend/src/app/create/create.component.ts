@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
-  //private modalService = inject(NgbModal);
   private bs = inject(BackendService);
   private router = inject(Router);
   closeResult = '';

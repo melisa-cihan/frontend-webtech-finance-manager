@@ -46,7 +46,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   assetGrowthDates: string[] = [];
   assetGrowthValues: number[] = [];
 
-  // Properties for Polar Area Chart
   @ViewChild('polarChartCanvas') polarChartCanvas!: ElementRef;
   polarChart!: Chart;
   polarChartLabels: string[] = [];
@@ -57,8 +56,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   bubbleChartData: any[] = [];
   bubbleChartLabels: string[] = [];
 
-
-  
   constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
@@ -73,9 +70,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.createPolarChart();
   }
 
-  // Method to capture the dashboard and generate a PDF
   downloadDashboard(): void {
-    // Ensure charts are updated before capturing
+
     this.lineChart.update();
     this.polarChart.update();
     this.bubbleChart.update();
@@ -87,13 +83,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         const imgData = canvas.toDataURL('image/png'); 
         const pdf = new jsPDF('p', 'mm', 'a4');
         
-        const imgWidth = 200; // Fit image to A4 width
-        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+        const imgWidth = 200; 
+        const imgHeight = (canvas.height * imgWidth) / canvas.width; 
   
         pdf.addImage(imgData, 'PNG', 5, 5, imgWidth, imgHeight);
         pdf.save('dashboard.pdf');
       });
-    }, 500); // Small delay to let updates render
+    }, 500); 
   }
   
 
@@ -127,13 +123,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     );
   }
 
-  //Fetching the asset location count
+  
   getAssetLocationCount(): void {
     this.backendService.getAssetLocationCount().subscribe(
       (data: any[]) => {
         this.polarChartLabels = data.map(item => item.location);
         this.polarChartData = data.map(item => item.asset_count);
-        // Ensure the chart is updated when data is fetched
         this.createPolarChart();
       },
       (error) => {
@@ -145,12 +140,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getAssetProfitability(): void {
     this.backendService.getAssetProfitability().subscribe(
         (data: any[]) => {
-          this.bubbleChartLabels = data.map(item => item.asset); // Asset names as labels
+          this.bubbleChartLabels = data.map(item => item.asset); 
 
           this.bubbleChartData = data.map((item, index) => ({
-              x: index,  // Use index instead of asset names
-              y: item.roi, // ROI (%) on Y-axis
-              r: Math.sqrt(item.current_value) / 10 // Bubble size based on value
+              x: index,  
+              y: item.roi, 
+              r: Math.sqrt(item.current_value) / 10 
           }));
 
           this.createBubbleChart();
@@ -160,7 +155,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 }
 
 
-//create bubble chart
 createBubbleChart(): void {
   const ctx = this.bubbleChartCanvas.nativeElement.getContext('2d');
 
@@ -186,12 +180,11 @@ createBubbleChart(): void {
               tooltip: {
                   callbacks: {
                       label: (context) => {
-                          // Type assertion to 'BubbleChartDataPoint'
                           const dataPoint = context.raw as { x: number; y: number; r: number }; 
 
-                          const assetName = this.bubbleChartLabels[context.dataIndex]; // Get asset name
-                          const roi = dataPoint.y; // ROI (%)
-                          const value = Math.pow(dataPoint.r * 10, 2); // Reverse scale to actual value
+                          const assetName = this.bubbleChartLabels[context.dataIndex]; 
+                          const roi = dataPoint.y; 
+                          const value = Math.pow(dataPoint.r * 10, 2); 
 
                           return `${assetName}: ROI ${roi}% | Value: €${value.toFixed(2)}`;
                       }
@@ -201,7 +194,7 @@ createBubbleChart(): void {
           scales: {
               x: {
                   type: 'category',
-                  labels: this.bubbleChartLabels, // Assign asset names to X-axis
+                  labels: this.bubbleChartLabels, 
                   title: {
                       display: true,
                       text: 'Assets'
@@ -218,17 +211,13 @@ createBubbleChart(): void {
   });
 }
 
-
-
-
-  // Creating the Polar Area Chart
+  
   createPolarChart(): void {
     const ctx = this.polarChartCanvas.nativeElement.getContext('2d');
     
-    // Ensure chart is created only if data exists
     if (this.polarChartLabels.length > 0 && this.polarChartData.length > 0) {
       this.polarChart = new Chart(ctx, {
-        type: 'polarArea' as ChartType,  // Cast to ChartType to avoid type issues
+        type: 'polarArea' as ChartType,  
         data: {
           labels: this.polarChartLabels,
           datasets: [
@@ -313,8 +302,8 @@ createBubbleChart(): void {
         layout: {
           padding: {
 
-            left: 20, // Increase this value to add more space on the left
-            right: 200, // Adjust other paddings as needed
+            left: 20, 
+            right: 200, 
             top: 20,
             bottom: 20,
           },

@@ -1,4 +1,4 @@
-/* Footer styling */
+
 .fixed-bottom {
   position: fixed;
   bottom: 0;
@@ -13,23 +13,19 @@
   height: 40px;
 }
 
-/* Add Flexbox to the container */
 .footer-content {
-  display: inline-flex; /* Use inline-flex to keep it centered */
-  align-items: center; /* Vertically align items */
+  display: inline-flex; 
+  align-items: center; 
 }
 
-/* Adjust paragraph spacing */
 .footer-content p {
-  margin-left: 10px; /* Add some space between GitHub logo and text */
+  margin-left: 10px; 
 }
 
-/* Remove margin from paragraph */
 .footer-content p.mb-0.mx-3 {
   margin: 0;
 }
 
-/* Make "Need help?" white */
 .footer-content p {
   color: white;
 }

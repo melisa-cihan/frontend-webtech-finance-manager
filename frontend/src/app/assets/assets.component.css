@@ -1,4 +1,4 @@
-/* Ensure the page uses full height and allows scrolling */
+
 html, body {
   height: 100%;
   margin: 0;
@@ -8,30 +8,29 @@ html, body {
 
 .container-xxl {
   flex: 1;
-  padding-bottom: 80px; /* Leave space for the footer */
-  overflow-x: auto; /* Allow horizontal scrolling if needed */
+  padding-bottom: 80px; 
+  overflow-x: auto; 
 }
 
-/* Make the table responsive */
+
 .table-responsive {
-  max-height: calc(100vh - 150px); /* Adjust table height for responsiveness */
-  overflow-y: auto; /* Enable vertical scrolling if table is too long */
-  margin-bottom: 50px; /* Ensure space for footer */
-  display: block; /* Ensure the table scrolls separately */
+  max-height: calc(100vh - 150px); 
+  overflow-y: auto; 
+  margin-bottom: 50px; 
+  display: block; 
   
 }
 
-/* Ensure table takes full width but does not shrink */
 .table {
   width: 100%;
-  min-width: 1000px; /* Prevents table columns from shrinking */
+  min-width: 1000px; 
 }
 
 .table thead {
   position: sticky;
   top: 0;
-  background-color: #343a40; /* Change background color to match table style */
-  z-index: 1; /* Ensures that the header stays on top */
+  background-color: #343a40; 
+  z-index: 1; 
 }
 
 i {
