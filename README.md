@@ -99,6 +99,8 @@ https://localhost:4200
 
 https://backend-webtech-fzkq.onrender.com
 
+### Limitations
+The Deployment is only connected to the Server not to the Database. Due to the free-tier, I can not add the HTW Sub Net
 ## AI Usage  
 | AI Tool  | Usage 
 |----------|----------
