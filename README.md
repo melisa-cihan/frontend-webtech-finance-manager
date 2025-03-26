@@ -8,9 +8,9 @@ A modern web application to manage and track assets efficiently.
 1. [Features](#features)  
 2. [Tech-Stack](#tech-stack)  
 3. [Getting Started](#getting-started)  
-4. [AI Usage](#ai-usage)
-5. [Author](#author)  
-
+4. [Deployment](#deployment)
+5. [AI Usage](#ai-usage)
+6. [Author](#author)  
 
 ## About
 Finance Manager is your go-to application for tracking and managing assets with ease. Whether you're handling stocks, real estate, or other investments, this tool provides a seamless experience to keep your portfolio organized. With powerful search, filtering, and real-time dashboard updates, Finance Manager ensures you always have an up-to-date view of your financial landscape. Stay in control, make data-driven decisions, and manage your assets like a pro.
@@ -94,6 +94,10 @@ ng serve
 #### Open the Application in your Browser
 https://localhost:4200
 
+## Deployment
+### Backend
+
+https://backend-webtech-fzkq.onrender.com
 
 ## AI Usage  
 | AI Tool  | Usage 
