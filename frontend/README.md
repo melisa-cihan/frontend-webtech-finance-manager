@@ -1,8 +1,7 @@
 # Welcome to Finance Manager  
 
 A modern web application to manage and track assets efficiently.  
-
-![Project Preview](https://via.placeholder.com/1200x600.png?text=Project+Screenshot)  
+  
 
 ## Table of Contents 
 0. [About](#about)   
@@ -15,6 +14,7 @@ A modern web application to manage and track assets efficiently.
 
 
 ## About
+Finance Manager is an Application to manage your Assets.
 
 ## Features  
 - Create, Read, Update, Delete Assets (CRUD)
@@ -90,7 +90,14 @@ https://localhost:4200
 
 
 ## AI Usage  
--
+| AI Tool  | Usage 
+|----------|----------
+| Open AI Chat GPT  | Refactoring, CSS-Styling, Generating Dummy Data,   Bug Fixing           
+| Google Gemini    | CSS-Styling 
+
+
+
+## Screenshots
 
 ## Author
 ### Melisa Cihan
