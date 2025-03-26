@@ -8,7 +8,7 @@ A modern web application to manage and track assets efficiently.
 1. [Features](#features)  
 2. [Tech-Stack](#tech-stack)  
 3. [Getting Started](#getting-started)  
-4. [Swagger Endpoint Documentation](#swagger)
+4. [Swagger Endpoint Documentation](#swagger-endpoint-documentation)
 5. [Deployment](#deployment)
 6. [AI Usage](#ai-usage)
 7. [Author](#author)  
@@ -96,6 +96,7 @@ ng serve
 https://localhost:4200
 
 ## Swagger Endpoint Documentation
+
 Navigate to 
 http://localhost:3000/api-docs/
 
