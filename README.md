@@ -1,7 +1,7 @@
 # Welcome to Finance Manager  
 A modern web application to manage and track assets efficiently.  
 
-![Dashboard Screenshot](frontend/src/assets/Logo.png)
+![Logo Screenshot](frontend/src/assets/Logo.png)
 
 ## Table of Contents 
 0. [About](#about)   
@@ -98,6 +98,8 @@ https://localhost:4200
 ## Swagger Endpoint Documentation
 Navigate to 
 http://localhost:3000/api-docs/
+
+![Swagger Screenshot](frontend/src/assets/Swagger.png)
 
 ## Deployment
 ### Backend
