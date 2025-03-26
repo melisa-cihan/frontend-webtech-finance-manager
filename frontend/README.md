@@ -1,7 +1,7 @@
 # Welcome to Finance Manager  
-
 A modern web application to manage and track assets efficiently.  
-  
+
+![Dashboard Screenshot](src/assets/Logo.png)
 
 ## Table of Contents 
 0. [About](#about)   
@@ -14,7 +14,7 @@ A modern web application to manage and track assets efficiently.
 
 
 ## About
-Finance Manager is an Application to manage your Assets.
+Finance Manager is your go-to application for tracking and managing assets with ease. Whether you're handling stocks, real estate, or other investments, this tool provides a seamless experience to keep your portfolio organized. With powerful search, filtering, and real-time dashboard updates, Finance Manager ensures you always have an up-to-date view of your financial landscape. Stay in control, make data-driven decisions, and manage your assets like a pro.
 
 ## Features  
 - Create, Read, Update, Delete Assets (CRUD)
@@ -29,7 +29,8 @@ Finance Manager is an Application to manage your Assets.
 - Interactive Charts and Dashboard 
 - Download Dashboard as PDF Funcionality
 - Automatic and dynamic Dashboard updates when asset-table entries change 
-- Responsive Bootstrap UI   
+- Responsive Bootstrap UI  
+- User friendly zoomable buttons 
 
 ##  Tech Stack  
 - **Frontend:** Angular, TypeScript, HTML, CSS
