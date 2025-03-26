@@ -14,60 +14,60 @@ import { RouterLink, Router } from '@angular/router';
 })
 export class AssetsComponent implements OnInit {
   asset!: Asset[];
-  filteredAssets!: Asset[]; 
+  filteredAssets!: Asset[];
   search = new FormControl();
-  
-  
+  assetToDeleteId: string | null = null; // Store asset ID to delete
+
   constructor(private bs: BackendService, private router: Router) { }
 
   ngOnInit(): void {
-    this.readAll()
+    this.readAll();
     this.search.valueChanges.subscribe(value => this.filterAssets(value));
   }
 
   readAll(): void {
-    this.bs.getAllAssets().subscribe(
-      {
-        next: (response) => {
-              this.asset = response;
-              console.log(this.asset);
-              this.filteredAssets = [...this.asset];
-              //return this.asset;
-            },
-        error: (err) => console.log(err),
-        complete: () => console.log('getAll() completed')
-      })
-  }
-
-   // Method to delete an asset
-   delete(id: string): void {
-    this.bs.deleteOneAsset(id).subscribe({
-      next: () => {
-        // Filter out the deleted asset from the arrays
-        this.asset = this.asset.filter(a => a.id !== id);
-        this.filteredAssets = this.filteredAssets.filter(a => a.id !== id);
-        console.log(`Asset with id ${id} deleted successfully`);
+    this.bs.getAllAssets().subscribe({
+      next: (response) => {
+        this.asset = response;
+        this.filteredAssets = [...this.asset];
       },
-      error: (err) => {
-        console.error('Error deleting asset:', err);
-      },
-      complete: () => console.log('Delete operation completed')
+      error: (err) => console.log(err),
+      complete: () => console.log('getAll() completed')
     });
   }
 
-   // Filter the assets based on the search term
-   filterAssets(searchTerm: string): void {
+  // Open the delete confirmation modal and store the ID
+  openDeleteModal(id: string): void {
+    this.assetToDeleteId = id;
+  }
+
+  // Confirm deletion
+  confirmDelete(): void {
+    if (this.assetToDeleteId) {
+      this.bs.deleteOneAsset(this.assetToDeleteId).subscribe({
+        next: () => {
+          // Remove asset from arrays
+          this.asset = this.asset.filter(a => a.id !== this.assetToDeleteId);
+          this.filteredAssets = this.filteredAssets.filter(a => a.id !== this.assetToDeleteId);
+          console.log(`Asset with ID ${this.assetToDeleteId} deleted successfully`);
+        },
+        error: (err) => console.error('Error deleting asset:', err),
+        complete: () => console.log('Delete operation completed')
+      });
+    }
+  }
+
+  filterAssets(searchTerm: string): void {
     if (!searchTerm) {
-      this.filteredAssets = [...this.asset]; // If the search term is empty, show all assets
+      this.filteredAssets = [...this.asset];
     } else {
-      searchTerm = searchTerm.toLowerCase(); // Make search term case-insensitive
+      searchTerm = searchTerm.toLowerCase();
       this.filteredAssets = this.asset.filter(a => 
-        a.asset.toLowerCase().includes(searchTerm) || // Search by asset name
-        a.category.toLowerCase().includes(searchTerm) || // Search by category
-        a.location.toLowerCase().includes(searchTerm) || // Search by location
-        a.purchase_date.toString().toLowerCase().includes(searchTerm) // Search by purchase date
+        a.asset.toLowerCase().includes(searchTerm) ||
+        a.category.toLowerCase().includes(searchTerm) ||
+        a.location.toLowerCase().includes(searchTerm) ||
+        a.purchase_date.toString().toLowerCase().includes(searchTerm)
       );
     }
   }
-  
 }

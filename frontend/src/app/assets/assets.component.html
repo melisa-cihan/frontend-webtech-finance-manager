@@ -1,9 +1,10 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assets</title>
-  </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assets</title>
+</head>
 
+<body>
   <div class="container my-5">
     <!-- Card Component -->
     <div class="card">
@@ -19,49 +20,71 @@
       </div>
     </div>
   </div>
-  
 
-  <div class="container-xxl mt-5 ">
+  <div class="container-xxl mt-5">
     <h3>Search</h3>
-    <input placeholder="filter" type="text" [formControl]="search" />
+    <input placeholder="filter" type="text" [formControl]="search" class="form-control w-25" />
     <p></p>
-  
+
     <div class="table-responsive">
       <table class="table table-striped table-hover" style="min-width: 1000px;">
         <thead class="table-dark">
           <tr>
-            <th scope="col" class="col">Row</th>
-            <th scope="col" class="col">ID</th>
-            <th scope="col" class="col">Asset</th>
-            <th scope="col" class="col">Category</th>
-            <th scope="col" class="col">Current Value</th>
-            <th scope="col" class="col">Purchase Price</th>
-            <th scope="col" class="col">ROI%</th>
-            <th scope="col" class="col">Location</th>
-            <th scope="col" class="col">Purchase Date</th>
-            <th scope="col" class="col">Action</th>
+            <th scope="col">Row</th>
+            <th scope="col">ID</th>
+            <th scope="col">Asset</th>
+            <th scope="col">Category</th>
+            <th scope="col">Current Value</th>
+            <th scope="col">Purchase Price</th>
+            <th scope="col">ROI%</th>
+            <th scope="col">Location</th>
+            <th scope="col">Purchase Date</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of filteredAssets; let i=index;">
-              <td>{{ i+1 }}</td>
-              <td>{{ a.id }}</td>
-              <td>{{ a.asset }}</td>
-              <td>{{ a.category }}</td>
-              <td>{{ a.current_value }}</td>
-              <td>{{ a.purchase_price }}</td>
-              <td>{{ a.roi }}</td>
-              <td>{{ a.location }}</td>
-              <td>{{ a.purchase_date | date:'dd-MM-yyyy'}}</td>
-              <td class="text-nowrap">
-                <a [routerLink]="['/assets', a.id]" class="me-2">
-                  <i class="bi bi-pencil-square text-primary"></i>
-                </a>
-                <i (click)="delete(a.id)" class="bi bi-trash text-danger" style="cursor: pointer;"></i>
-              </td>  
-            </tr>
-          </tbody>
-        </table>
+          <tr *ngFor="let a of filteredAssets; let i=index;">
+            <td>{{ i+1 }}</td>
+            <td>{{ a.id }}</td>
+            <td>{{ a.asset }}</td>
+            <td>{{ a.category }}</td>
+            <td>{{ a.current_value }}</td>
+            <td>{{ a.purchase_price }}</td>
+            <td>{{ a.roi }}</td>
+            <td>{{ a.location }}</td>
+            <td>{{ a.purchase_date | date:'dd-MM-yyyy'}}</td>
+            <td class="text-nowrap">
+              <a [routerLink]="['/assets', a.id]" class="me-2">
+                <i class="bi bi-pencil-square text-primary"></i>
+              </a>
+              <!-- Delete button with modal trigger -->
+              <i (click)="openDeleteModal(a.id)" class="bi bi-trash text-danger" style="cursor: pointer;" 
+                 data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this asset?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDelete()" data-bs-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
