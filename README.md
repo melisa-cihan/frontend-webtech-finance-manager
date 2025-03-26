@@ -9,8 +9,7 @@ A modern web application to manage and track assets efficiently.
 2. [Tech-Stack](#tech-stack)  
 3. [Getting Started](#getting-started)  
 4. [AI Usage](#ai-usage)
-5. [Screenshots](#screenshots)
-6. [Author](#author)  
+5. [Author](#author)  
 
 
 ## About
@@ -101,10 +100,6 @@ https://localhost:4200
 |----------|----------
 | Open AI Chat GPT  | Refactoring, CSS-Styling, Generating Dummy Data,   Bug Fixing           
 | Google Gemini    | CSS-Styling 
-
-
-
-## Screenshots
 
 ## Author
 ### Melisa Cihan
