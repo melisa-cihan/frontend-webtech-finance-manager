@@ -85,7 +85,7 @@ GET localhost:3000/init
 ```
 ### Start the Frontend
 ```
-cd frontend frontend-webtech/frontend
+cd frontend-webtech/frontend
 npm install
 ```
 #### Run the Frontend
