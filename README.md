@@ -51,7 +51,7 @@ node -v
 - OpenVPN Connect to access the HTW Net
 ### Clone the Repositories
 ```
-git clone https://github.com/melisa-cihan/frontend-webtech.git
+git clone https://github.com/melisa-cihan/frontend-webtech-finance-manager.git
 
 git clone https://github.com/melisa-cihan/backend-webtech-finance-manager.git
 ```
@@ -85,7 +85,7 @@ GET localhost:3000/init
 ```
 ### Start the Frontend
 ```
-cd frontend-webtech/frontend
+cd frontend-webtech-finance-manager/frontend
 npm install
 ```
 #### Run the Frontend
