@@ -53,18 +53,18 @@ node -v
 ```
 git clone https://github.com/melisa-cihan/frontend-webtech.git
 
-git clone https://github.com/melisa-cihan/backend-webtech.git
+git clone https://github.com/melisa-cihan/backend-webtech-finance-manager.git
 ```
 
 ### Start the Backend
 ```
-cd backend-webtech
+cd backend-webtech-finance-manager
 npm install
 ```
 #### Connect to the Database
 - Connect to the HTW OpenVPN
 
-- In the 'backend-webtech' folder create a .env file to connect to the  Database on the Ocean Server
+- In the 'backend-webtech-finance-manager' folder create a .env file to connect to the  Database on the Ocean Server
 - unfortunateley I can not give you my password 
 ```
 PGUSER=s0587247
